@@ -2,7 +2,15 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:herotask/config/colors_file.dart';
 import 'package:herotask/config/textstyle.dart';
+import 'package:herotask/controller/homeController.dart';
+import 'package:herotask/screen/homepage/find_word.dart';
+import 'package:herotask/screen/homepage/message.dart';
+import 'package:herotask/screen/homepage/more.dart';
+import 'package:herotask/screen/homepage/mytask.dart';
+import 'package:herotask/screen/homepage/post_task.dart';
 import 'package:herotask/widgets/button.dart';
+import 'package:get/get.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -11,112 +19,51 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * .10,
+    List page = [
+      PostTask(),
+      MyTask(),
+      FindWord(),
+      MessageScreen(),
+      MoreScreen()
+    ];
+    return GetBuilder<HomeController>(builder: (homecontroller) {
+      return Scaffold(
+          backgroundColor: backgroudColor,
+          body: page[homecontroller.pageindex],
+          bottomNavigationBar: BottomNavigationBar(
+            //backgroundColor: Colors.white,
+            iconSize: 26,
+
+            showSelectedLabels: true,
+            showUnselectedLabels: true,
+            unselectedItemColor: lightBlack,
+            selectedItemColor: primaryTextColor,
+            //backgroundColor: Colors.red,
+            //backgroundColor: Colors.white,
+            //elevation: 1.0,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: FaIcon(
+                  FontAwesomeIcons.fileMedical,
+                  size: 26,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 40),
-                  child: Image.asset(
-                    'assets/images/LogoSmall@2x.png',
-                    width: 154,
-                    height: 142,
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * .05,
-                ),
-                RichText(
-                  text: TextSpan(
-                    text: 'Bring ',
-                    style: headerText,
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: 'Heros'.toUpperCase(),
-                          style: headerText.copyWith(color: primaryTextColor)),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  'to do your to-dos',
-                  style: headerText,
-                ),
-                const SizedBox(
-                  height: 31,
-                ),
-                const TextField(
-                  obscureText: true,
-                  autofocus: false,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    // border: OutlineInputBorder(),
-                    labelText: 'Email',
-                  ),
-                ),
-                const SizedBox(
-                  height: 31,
-                ),
-                TextField(
-                  controller: _passwordController,
-                  obscureText: true,
-                  autofocus: false,
-                  keyboardType: TextInputType.text,
-                  decoration: const InputDecoration(
-                      // border: OutlineInputBorder(),
-                      labelText: 'Password',
-                      suffixIcon: Icon(Icons.remove_red_eye_outlined)),
-                ),
-                const SizedBox(
-                  height: 41,
-                ),
-                ButtonWidget(title: 'Sing in', ontap: () {}),
-                const SizedBox(
-                  height: 61,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                        child: Text(
-                      'Forget Password',
-                      style: detailText16.copyWith(color: lightBlack),
-                    )),
-                    Expanded(
-                      child: RichText(
-                        text: TextSpan(
-                          text: 'New User?  ',
-                          style: detailText16.copyWith(color: lightBlack),
-                          children: [
-                            TextSpan(
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    print(
-                                        '-------------sing up Press-----------');
-                                  },
-                                text: 'Sing Up',
-                                style:
-                                    detailText16.copyWith(color: Colors.black)),
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+                label: 'Post a Task',
+              ),
+              BottomNavigationBarItem(
+                  icon: FaIcon(FontAwesomeIcons.fileLines), label: 'My task'),
+              BottomNavigationBarItem(
+                  icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
+                  label: 'Find works'),
+              BottomNavigationBarItem(
+                  icon: FaIcon(FontAwesomeIcons.envelope), label: 'Messages'),
+              BottomNavigationBarItem(
+                  icon: FaIcon(FontAwesomeIcons.ellipsis), label: 'More'),
+            ],
+            currentIndex: homecontroller.pageindex,
+            onTap: (index) {
+              homecontroller.pageChangeIndex(index);
+            },
+          ));
+    });
   }
 }

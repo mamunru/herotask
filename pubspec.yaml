@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.5
   font_awesome: ^5.10.1
+  custom_navigation_bar: ^0.8.2
+  font_awesome_flutter: ^10.4.0
 
 dev_dependencies:
   flutter_test:

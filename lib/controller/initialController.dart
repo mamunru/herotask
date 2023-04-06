@@ -12,7 +12,7 @@ class InitialController extends GetxController {
     //splash screen show time
     await Future.delayed(const Duration(seconds: 2));
     //redirect HomePage Route after 2 seconds
-    print('-------------homePage Route--------------');
-    Get.offAllNamed(RoutesName.homepage);
+    print('-------------Login Route--------------');
+    Get.offAllNamed(RoutesName.login);
   }
 }

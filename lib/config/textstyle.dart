@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:herotask/config/colors_file.dart';
 
 const detailText12 = TextStyle(fontSize: 12);
 
 const detailText14 = TextStyle(fontSize: 14);
 const detailText15 = TextStyle(fontSize: 15);
-const detailText16 = TextStyle(fontSize: 16, color: Colors.black);
+const detailText16 =
+    TextStyle(fontSize: 16, letterSpacing: .02, fontWeight: FontWeight.w400);
 const detailText18 = TextStyle(fontSize: 18, color: Colors.black);
 
 const titleText15 = TextStyle(fontSize: 15, color: Colors.black54);
