@@ -15,48 +15,50 @@ class CongratulationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: Container(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 25,
-            ),
-            Center(
-              child: Text(
-                'Congratulation!',
-                style: headerText.copyWith(color: primaryTextColor),
+          child: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 25,
               ),
-            ),
-            const SizedBox(
-              height: 11,
-            ),
-            const Center(
-              child: Text(
-                'Your task has been posted. ',
-                style: detailText16,
+              Center(
+                child: Text(
+                  'Congratulation!',
+                  style: headerText.copyWith(color: primaryTextColor),
+                ),
               ),
-            ),
-            //
-            const Center(
-              child: Text(
-                'You will be notified after you receive an offer ',
-                style: detailText16,
+              const SizedBox(
+                height: 11,
               ),
-            ),
-            const SizedBox(
-              height: 65,
-            ),
-            Container(
-              height: MediaQuery.of(context).size.width * .8,
-              width: MediaQuery.of(context).size.width * .8,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image:
-                          AssetImage('assets/images/Offer Accepted@2x.png'))),
-              //child: Image.asset(''),
-            )
-          ],
+              const Center(
+                child: Text(
+                  'Your task has been posted. ',
+                  style: detailText16,
+                ),
+              ),
+              //
+              const Center(
+                child: Text(
+                  'You will be notified after you receive an offer ',
+                  style: detailText16,
+                ),
+              ),
+              const SizedBox(
+                height: 65,
+              ),
+              Container(
+                height: MediaQuery.of(context).size.width * .8,
+                width: MediaQuery.of(context).size.width * .8,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image:
+                            AssetImage('assets/images/Offer Accepted@2x.png'))),
+                //child: Image.asset(''),
+              )
+            ],
+          ),
         ),
       )),
       bottomNavigationBar: Container(
